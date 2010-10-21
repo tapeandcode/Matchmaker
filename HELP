@@ -3,5 +3,18 @@ Matchmaker Help File
 
 INPUT
 -----
+(d)ivision - Modify the divisions that classify each person
+
 (h)elp  - Get help for the program, displays this help file
 (q)uit  - Quit the program
+
+Terms
+-----
+Division
+    Divisions are the basic classifications for each person. For example, a
+    school using the Matchmaker program would likely use the following divisions:
+        matchmaker> division
+        matchmaker/division> No current divisions. Enter new ones:
+        matchmaker/division> 9 freshman; 10 sopohmore; 11 junior; 12 senior
+    When entering divisions, be sure to put the ID of the division before the
+    name itself, and separate each division with a ";"
