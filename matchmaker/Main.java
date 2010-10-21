@@ -22,8 +22,6 @@
 
 package matchmaker;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Scanner;
 import input.TextOperations;
 import java.util.logging.Level;
@@ -56,7 +54,12 @@ public class Main {
             //Process the command
             command = TextOperations.cleanUserInput(command);
 
-            //Help case
+            //Modify Divisions
+            if(command.equals("division") || command.equals("d")){
+                Division.divisionInit();
+            }
+
+            //Help case --------------------------------------------------------
             if(command.equals("help") || command.equals("h")){
                 try {
                     MenuOutput.displayHelp();
@@ -65,7 +68,7 @@ public class Main {
                 }
             }
 
-            //Quit case
+            //Quit case --------------------------------------------------------
             if(command.equals("quit") || command.equals("exit") ||command.equals("q")){
                 quitStatus = true;
             }
