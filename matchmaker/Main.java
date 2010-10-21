@@ -18,7 +18,6 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with Matchmaker.  If not, see <http ://www.gnu.org/licenses/>.
-< #if licenseLast??>
  */
 
 package matchmaker;
