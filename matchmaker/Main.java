@@ -22,8 +22,16 @@
 
 package matchmaker;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Scanner;
+import input.TextOperations;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import output.MenuOutput;
+
 /**
- *
+ * Main Matchmaker class, handles top-level operations
  * @author Travis Olbrich <travis at tapeandcode.com>
  */
 public class Main {
@@ -35,13 +43,32 @@ public class Main {
      */
     public static void main(String[] args) {
         boolean quitStatus = false;
+        Scanner sc = new Scanner(System.in);
 
         //Display intro
         displayIntro();
 
         while(quitStatus == false) {
+            //Get the command
             System.out.print("matchmaker> ");
-            //TODO: Input handling
+            String command = sc.nextLine();
+
+            //Process the command
+            command = TextOperations.cleanUserInput(command);
+
+            //Help case
+            if(command.equals("help") || command.equals("h")){
+                try {
+                    MenuOutput.displayHelp();
+                } catch (Exception ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+            //Quit case
+            if(command.equals("quit") || command.equals("exit") ||command.equals("q")){
+                quitStatus = true;
+            }
         }
 
     }
