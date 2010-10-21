@@ -29,10 +29,33 @@ package matchmaker;
 public class Main {
 
     /**
-     * @param args the command line arguments
+     * Sets up the basic interface for the Matchmaker program
+     *
+     * @param args unused
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        boolean quitStatus = false;
+
+        //Display intro
+        displayIntro();
+
+        while(quitStatus == false) {
+            System.out.print("matchmaker> ");
+            //TODO: Input handling
+        }
+
+    }
+
+    /**
+     * Displays the basic instructions for the user
+     */
+    private static void displayIntro(){
+        System.out.println("Welcome to Matchmaker \n" +
+                           "--------------------- \n" +
+                           "If this is your first time running Matchmaker or if \n"+
+                           "you would like to set the program back up, type: \n" +
+                           "setup \n"+
+                           "Otherwise, type 'help' or any other command.");
     }
 
 }
