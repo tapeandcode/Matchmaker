@@ -26,6 +26,8 @@ import database.*;
 import input.TextOperations;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Handles modification of divisions
@@ -52,8 +54,8 @@ public class Division {
         //Check for the existence of at least one division
         if(hasDivision()){
             System.out.println("> The following divisions exist:");
-            //TODO: display divisions
-            System.out.println("> Modify, make new, or exit? (M,N,e)");
+            display();
+            System.out.println("> Modify or exit? (M,e)");
 
             String command = TextOperations.getCommand(TITLE);
 
@@ -61,15 +63,16 @@ public class Division {
             if(!command.equals("e")){
                 //TODO: handle user actions
             }
+
         }else{
+
             System.out.println("> No divisions exist. Add new ones? (y/n)");
 
             String command = TextOperations.getCommand(TITLE);
 
             if(command.equals("y")){
                 String input = TextOperations.getRawCommand(TITLE+"/nameDivisions");
-                ArrayList<DivisionModel> divisions = DivisionModel.makeList(input);
-                Database.writeDivisions(divisions, stmt, conn);
+                createDivisions(input);
             }
         }
 
@@ -77,15 +80,25 @@ public class Division {
     }
 
     /**
-     * Add or modify the different divisions
-     */
-    private static void modify(){
-    }
-
-    /**
      * Simply displays the different existing divisions.
      */
-    private static void display(){
+    private void display(){
+        String query = "SELECT * FROM APP.divisions";
+        try {
+            //Get the results
+            ResultSet rs = stmt.executeQuery(query);
+
+            //Header
+            System.out.println("> ID\tName");
+
+            while(rs.next()){
+                int id = rs.getInt("ID");
+                String name = rs.getString("NAME");
+                System.out.println("> " + id + "\t " + name);
+            }
+        } catch (SQLException ex) {
+            System.out.println("ERROR> Database Connection Error.");
+        }
     }
 
     /**
@@ -102,6 +115,15 @@ public class Division {
             return true;
         }
         return false;
+    }
+
+    /**
+     * Makes a new division
+     * @param input the user's input
+     */
+    private void createDivisions(String input) {
+        ArrayList<DivisionModel> divisions = DivisionModel.makeList(input);
+        Database.writeDivisions(divisions, stmt, conn);
     }
     
 }
