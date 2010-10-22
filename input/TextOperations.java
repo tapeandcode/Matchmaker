@@ -99,7 +99,7 @@ public class TextOperations {
         if(!title.isEmpty())
             System.out.print("/"+title);
 
-        System.out.print(">");
+        System.out.print("> ");
 
         //Get the command
         String command = sc.nextLine();
