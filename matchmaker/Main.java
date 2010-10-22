@@ -24,9 +24,11 @@ package matchmaker;
 
 import java.util.Scanner;
 import input.TextOperations;
+import java.sql.Connection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import output.MenuOutput;
+import output.*;
+import database.*;
 
 /**
  * Main Matchmaker class, handles top-level operations
@@ -38,10 +40,14 @@ public class Main {
      * Sets up the basic interface for the Matchmaker program
      *
      * @param args unused
+     * @throws Exception
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
+        //Setup
         boolean quitStatus = false;
         Scanner sc = new Scanner(System.in);
+        Database db = new Database();
+        Connection conn = db.DBInit();
 
         //Display intro
         displayIntro();
@@ -56,7 +62,7 @@ public class Main {
 
             //Modify Divisions
             if(command.equals("division") || command.equals("d")){
-                Division.divisionInit();
+                //Division.divisionInit(db);
             }
 
             //Help case --------------------------------------------------------

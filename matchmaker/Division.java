@@ -22,15 +22,20 @@
 
 package matchmaker;
 
+import java.sql.Connection;
+
 /**
  * Handles modification of divisions
  * @author Travis Olbrich <travis at tapeandcode.com>
  */
 public class Division {
+    database.Database db;
+
     /**
      * First called method, checks if divisions already exist
      */
-    public static void divisionInit(){
+    public void divisionInit(database.Database d){
+        db = d; //Load the database connection
         //See if there are divisions that already exist
 
         //if there are no divisions in the database
