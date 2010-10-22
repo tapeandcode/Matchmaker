@@ -61,14 +61,20 @@ public class Database {
      * @param divisions the list of divisions to add
      * @param stmt the statement
      * @param conn the database connection
-     * @throws SQLException
      */
-    public static void writeDivisions(ArrayList<DivisionModel> divisions, Statement stmt, Connection conn) throws SQLException{
-        String deleteQuery = "DELETE * FROM APP.divisions";
-        stmt.execute(deleteQuery);
+    public static void writeDivisions(ArrayList<DivisionModel> divisions, Statement stmt, Connection conn){
+        try{
+            String deleteQuery = "DELETE * FROM APP.divisions";
+            stmt.execute(deleteQuery);
 
-
-        //String insertQuery = "INSERT INTO APP.divisions \n"+
+            for(DivisionModel model : divisions){
+                String insertQuery = "INSERT INTO APP.divisions \n";
+                insertQuery+="VALUES("+model.getID()+", '"+model.getName()+"')";
+                stmt.execute(insertQuery);
+            }
+        }catch (SQLException ex){
+            System.out.println("ERROR> Database Connection Issue");
+        }
     }
 
     /**
