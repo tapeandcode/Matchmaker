@@ -46,7 +46,7 @@ public class DivisionModel {
     /**
      * Turns the user's input into a list of divisions
      * @param input the user's input
-     * @return model the model to then be modified
+     * @return The model to then be modified
      */
     public static ArrayList<DivisionModel> makeList(String input) {
         ArrayList<DivisionModel> model = new ArrayList<DivisionModel>();
@@ -65,7 +65,7 @@ public class DivisionModel {
 
     /**
      * Gets the ID
-     * @return ID the id of the division
+     * @return The id of the division
      */
     public int getID(){
         return id;
@@ -73,7 +73,7 @@ public class DivisionModel {
 
     /**
      * Gets the name
-     * @return name the name of the division
+     * @return The name of the division
      */
     public String getName(){
         return name;

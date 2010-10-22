@@ -23,8 +23,7 @@
 package database;
 
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
 
 /**
  * Sets up a connection to the database
@@ -55,5 +54,33 @@ public class Database {
             System.exit(0);
         }
         return null;
+    }
+
+    /**
+     * Writes the divisions to the database
+     * @param divisions the list of divisions to add
+     * @param stmt the statement
+     * @param conn the database connection
+     * @throws SQLException
+     */
+    public static void writeDivisions(ArrayList<DivisionModel> divisions, Statement stmt, Connection conn) throws SQLException{
+        String deleteQuery = "DELETE * FROM APP.divisions";
+        stmt.execute(deleteQuery);
+
+
+        //String insertQuery = "INSERT INTO APP.divisions \n"+
+    }
+
+    /**
+     * Create a table. If the table already exists nothing will happen.
+     * @param stmt Statement
+     * @param conn Database Connection
+     */
+    public static void createTable(Statement stmt, Connection conn) {
+        String divTableSql = "CREATE TABLE APP.divisions (ID INT NOT NULL, name varchar(20) NOT NULL)";
+        try{
+            stmt.execute(divTableSql);
+            System.out.println("> New Divisions table created.");
+        } catch (SQLException ex){}
     }
 }

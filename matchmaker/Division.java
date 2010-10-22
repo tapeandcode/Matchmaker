@@ -22,7 +22,7 @@
 
 package matchmaker;
 
-import database.DivisionModel;
+import database.*;
 import input.TextOperations;
 import java.sql.*;
 import java.util.ArrayList;
@@ -47,7 +47,7 @@ public class Division {
         stmt = conn.createStatement();
 
         //Create the divisions table if it does not exist
-        createTable();
+        Database.createTable(stmt, conn);
 
         //Check for the existence of at least one division
         if(hasDivision()){
@@ -69,6 +69,7 @@ public class Division {
             if(command.equals("y")){
                 String input = TextOperations.getRawCommand(TITLE+"/nameDivisions");
                 ArrayList<DivisionModel> divisions = DivisionModel.makeList(input);
+                Database.writeDivisions(divisions, stmt, conn);
             }
         }
 
@@ -85,17 +86,6 @@ public class Division {
      * Simply displays the different existing divisions.
      */
     private static void display(){
-    }
-
-    /**
-     * Create a table. If the table already exists nothing will happen.
-     */
-    private void createTable() {
-        String divTableSql = "CREATE TABLE APP.divisions (ID INT NOT NULL, name varchar(20) NOT NULL)";
-        try{
-            stmt.execute(divTableSql);
-            System.out.println("> New Divisions table created.");
-        } catch (SQLException ex){}
     }
 
     /**
