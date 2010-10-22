@@ -64,7 +64,7 @@ public class Database {
      */
     public static void writeDivisions(ArrayList<DivisionModel> divisions, Statement stmt, Connection conn){
         try{
-            String deleteQuery = "DELETE * FROM APP.divisions";
+            String deleteQuery = "DELETE FROM APP.divisions";
             stmt.execute(deleteQuery);
 
             for(DivisionModel model : divisions){
@@ -74,6 +74,7 @@ public class Database {
             }
         }catch (SQLException ex){
             System.out.println("ERROR> Database Connection Issue");
+            System.out.println(ex.getMessage());
         }
     }
 
