@@ -22,8 +22,10 @@
 
 package matchmaker;
 
+import database.DivisionModel;
 import input.TextOperations;
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  * Handles modification of divisions
@@ -50,13 +52,24 @@ public class Division {
         //Check for the existence of at least one division
         if(hasDivision()){
             System.out.println("> The following divisions exist:");
+            //TODO: display divisions
             System.out.println("> Modify, make new, or exit? (M,N,e)");
 
             String command = TextOperations.getCommand(TITLE);
+
+            //Only continue if the user wants to
+            if(!command.equals("e")){
+                //TODO: handle user actions
+            }
         }else{
             System.out.println("> No divisions exist. Add new ones? (y/n)");
 
             String command = TextOperations.getCommand(TITLE);
+
+            if(command.equals("y")){
+                String input = TextOperations.getRawCommand(TITLE+"/nameDivisions");
+                ArrayList<DivisionModel> divisions = DivisionModel.makeList(input);
+            }
         }
 
         
