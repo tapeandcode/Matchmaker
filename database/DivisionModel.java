@@ -55,8 +55,10 @@ public class DivisionModel {
         //Now go through each division and set them up.
         for(int i=0; i<eachDivision.length; i++){
             eachDivision[i] = eachDivision[i].trim();
-            int id = (int)eachDivision[i].charAt(0) - 48;
-            String name = eachDivision[i].substring(2, eachDivision[i].length());
+
+            int id = Integer.valueOf(eachDivision[i].split(" ")[0]); //The first item should be the id
+            String name = eachDivision[i].split(" ")[1]; //Second item should be name
+
             //System.out.println("debug>"+id+name);
             model.add(new DivisionModel(id, name));
         }

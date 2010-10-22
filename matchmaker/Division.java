@@ -19,7 +19,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Matchmaker.  If not, see <http ://www.gnu.org/licenses/>.
  */
-
 package matchmaker;
 
 import database.*;
@@ -34,6 +33,7 @@ import java.util.logging.Logger;
  * @author Travis Olbrich <travis at tapeandcode.com>
  */
 public class Division {
+
     Connection conn;
     Statement stmt;
     private final String TITLE = "divisions";
@@ -43,7 +43,7 @@ public class Division {
      * @param c the connection to the database
      * @throws SQLException
      */
-    public void divisionInit(Connection c) throws SQLException{
+    public void divisionInit(Connection c) throws SQLException {
         //Set us up to use the database
         conn = c;
         stmt = conn.createStatement();
@@ -52,37 +52,37 @@ public class Division {
         Database.createTable(stmt, conn);
 
         //Check for the existence of at least one division
-        if(hasDivision()){
+        if (Database.hasDivision(stmt)) {
             System.out.println("> The following divisions exist:");
             display();
-            System.out.println("> Modify or exit? (M,e)");
 
+            System.out.println("> Modify or exit? (M,e)");
             String command = TextOperations.getCommand(TITLE);
 
             //Only continue if the user wants to
-            if(!command.equals("e")){
-                //TODO: handle user actions
+            if (command.equals("m")) {
+                createDivisions();
+                
+            }else if(!command.equals("e")){
+                System.out.println("Warning> Invalid Input.");
             }
 
-        }else{
 
+        } else {
             System.out.println("> No divisions exist. Add new ones? (y/n)");
 
             String command = TextOperations.getCommand(TITLE);
 
-            if(command.equals("y")){
-                String input = TextOperations.getRawCommand(TITLE+"/nameDivisions");
-                createDivisions(input);
+            if (command.equals("y")) {                
+                createDivisions();
             }
         }
-
-        
     }
 
     /**
      * Simply displays the different existing divisions.
      */
-    private void display(){
+    private void display() {
         String query = "SELECT * FROM APP.divisions";
         try {
             //Get the results
@@ -91,7 +91,7 @@ public class Division {
             //Header
             System.out.println("> ID\tName");
 
-            while(rs.next()){
+            while (rs.next()) {
                 int id = rs.getInt("ID");
                 String name = rs.getString("NAME");
                 System.out.println("> " + id + "\t " + name);
@@ -102,28 +102,13 @@ public class Division {
     }
 
     /**
-     * Checks to see if there already are division(s) in the database
-     * @return true if there are divisions, false if not
-     * @throws SQLException
-     */
-    private boolean hasDivision() throws SQLException {
-        String query = "SELECT id FROM APP.divisions";
-        ResultSet result = stmt.executeQuery(query);
-
-        //See if at least the first result can be loaded
-        if(result.next()){
-            return true;
-        }
-        return false;
-    }
-
-    /**
      * Makes a new division
      * @param input the user's input
      */
-    private void createDivisions(String input) {
+    private void createDivisions(){
+        String input = TextOperations.getRawCommand(TITLE + "/nameDivisions");
         ArrayList<DivisionModel> divisions = DivisionModel.makeList(input);
         Database.writeDivisions(divisions, stmt, conn);
+        display();
     }
-    
 }

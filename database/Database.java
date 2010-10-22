@@ -78,6 +78,23 @@ public class Database {
         }
     }
 
+        /**
+     * Checks to see if there already are division(s) in the database
+     * @param stmt the statement
+     * @return true if there are divisions, false if not
+     * @throws SQLException
+     */
+    public static boolean hasDivision(Statement stmt) throws SQLException {
+        String query = "SELECT id FROM APP.divisions";
+        ResultSet result = stmt.executeQuery(query);
+
+        //See if at least the first result can be loaded
+        if(result.next()){
+            return true;
+        }
+        return false;
+    }
+
     /**
      * Create a table. If the table already exists nothing will happen.
      * @param stmt Statement
