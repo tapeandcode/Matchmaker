@@ -45,8 +45,8 @@ public class DivisionModel {
 
     /**
      * Turns the user's input into a list of divisions
-     * @param input
-     * @return
+     * @param input the user's input
+     * @return model the model to then be modified
      */
     public static ArrayList<DivisionModel> makeList(String input) {
         ArrayList<DivisionModel> model = new ArrayList<DivisionModel>();
@@ -57,7 +57,7 @@ public class DivisionModel {
             eachDivision[i] = eachDivision[i].trim();
             int id = (int)eachDivision[i].charAt(0) - 48;
             String name = eachDivision[i].substring(2, eachDivision[i].length());
-            System.out.println("debug>"+id+name);
+            //System.out.println("debug>"+id+name);
             model.add(new DivisionModel(id, name));
         }
         return model;
