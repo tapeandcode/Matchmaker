@@ -49,9 +49,12 @@ public class Division {
         if(hasDivision()){
             System.out.println("> The following divisions exist:");
             System.out.println("> Modify, make new, or exit? (M,N,e)");
+
         }else{
             System.out.println("> No divisions exist. Add new ones? (y/n)");
-        }       
+        }
+
+        String command = input.TextOperations.getCommand("divisions");
     }
 
     /**

@@ -22,23 +22,65 @@
 
 package input;
 
+import java.util.Scanner;
+import output.MenuOutput;
+
 /**
  *
  * @author Travis Olbrich <travis at tapeandcode.com>
  */
 public class TextOperations {
+    static Scanner sc = new Scanner(System.in);
 
     /**
      * Cleans the CLI input from the user.
      * @param input the user's input
      * @return output the cleaned, formatted string
      */
-    public static String cleanUserInput(String input){
+    private static String cleanUserInput(String input){
         String output = null;
 
         output = input.trim();
         output = input.toLowerCase();
 
         return output;
+    }
+
+    /**
+     * Checks for basic common input like help, quit, etc
+     * @param command the cleaned input text
+     */
+    private static void catchBasicFunctions(String command) {
+        //Help case --------------------------------------------------------
+            if(command.equals("help") || command.equals("h")){
+                try {
+                    MenuOutput.displayHelp();
+                } catch (Exception ex) {
+                    System.out.println("For some reason, the help file could not show");
+                }
+            }
+
+            //Quit case --------------------------------------------------------
+            if(command.equals("quit") || command.equals("exit") ||command.equals("q")){
+                System.exit(0);
+            }
+    }
+
+    public static String getCommand(String title) {
+        //Get the command
+            System.out.print("matchmaker");
+            if(!title.isEmpty())
+                System.out.print("/"+title);
+
+            System.out.print(">");
+            String command = sc.nextLine();
+
+            //Process the command
+            command = cleanUserInput(command);
+            
+            //Check for basic input
+            catchBasicFunctions(command);
+
+            return command;
     }
 }

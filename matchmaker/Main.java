@@ -45,7 +45,6 @@ public class Main {
     public static void main(String[] args) throws Exception{
         //Setup
         boolean quitStatus = false;
-        Scanner sc = new Scanner(System.in);
         Database db = new Database();
         Connection conn = db.DBInit();
 
@@ -53,12 +52,7 @@ public class Main {
         displayIntro();
 
         while(quitStatus == false) {
-            //Get the command
-            System.out.print("matchmaker> ");
-            String command = sc.nextLine();
-
-            //Process the command
-            command = TextOperations.cleanUserInput(command);
+            String command = TextOperations.getCommand("");
 
             //Modify Divisions
             if(command.equals("division") || command.equals("d")){
@@ -66,7 +60,7 @@ public class Main {
                 div.divisionInit(conn);
             }
 
-            catchBasicFunctions(command);
+            
         }
 
     }
@@ -83,24 +77,6 @@ public class Main {
                            "Otherwise, type 'help' or any other command.");
     }
 
-    /**
-     * Checks for basic common input like help, quit, etc
-     * @param command the cleaned input text
-     */
-    public static void catchBasicFunctions(String command) {
-        //Help case --------------------------------------------------------
-            if(command.equals("help") || command.equals("h")){
-                try {
-                    MenuOutput.displayHelp();
-                } catch (Exception ex) {
-                    System.out.println("For some reason, the help file could not show");
-                }
-            }
-
-            //Quit case --------------------------------------------------------
-            if(command.equals("quit") || command.equals("exit") ||command.equals("q")){
-                System.exit(0);
-            }
-    }
+    
 
 }

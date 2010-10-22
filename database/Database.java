@@ -50,7 +50,7 @@ public class Database {
         try {
             return DriverManager.getConnection(DB_URL, USER, PASS);
         } catch (SQLException ex) {
-            System.out.println("> ERROR: Database Connection Failure");
+            System.out.println("> ERROR: Database Connection Failure.");
             System.out.println(ex.getMessage());
             System.exit(0);
         }
