@@ -37,6 +37,8 @@ public class Database {
     final String PASS = "pwd!";
     
     /**
+     * Because you gotta initialize the database somewhere... Actually, this
+     * simply drives the rest of the initilization stuff.
      * 
      * @return a connection to the database
      * @throws ClassNotFoundException

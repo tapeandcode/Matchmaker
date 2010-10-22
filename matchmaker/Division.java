@@ -58,9 +58,15 @@ public class Division {
     private static void modify(){
     }
 
+    /**
+     * Simply displays the different existing divisions.
+     */
     private static void display(){
     }
 
+    /**
+     * Create a table. If the table already exists nothing will happen.
+     */
     private void createTable() {
         String divTableSql = "CREATE TABLE APP.divisions (ID INT NOT NULL, name varchar(20) NOT NULL)";
         try{
