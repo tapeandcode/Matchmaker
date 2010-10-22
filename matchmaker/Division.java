@@ -42,14 +42,16 @@ public class Division {
         conn = c;
         stmt = conn.createStatement();
 
-        //See if there are divisions that already exist
+        //Create the divisions table if it does not exist
         createTable();
 
-        //if there are no divisions in the database
-        System.out.println("No divisions exist. Add new ones? (y/n)");
-        //If there are divisions in the database
-        System.out.println("The following divisions exist:");
-        System.out.println("Modify, make new, or exit? (M,N,e)");
+        //Check for the existence of at least one division
+        if(hasDivision()){
+            System.out.println("> The following divisions exist:");
+            System.out.println("> Modify, make new, or exit? (M,N,e)");
+        }else{
+            System.out.println("> No divisions exist. Add new ones? (y/n)");
+        }       
     }
 
     /**
@@ -73,6 +75,22 @@ public class Division {
             stmt.execute(divTableSql);
             System.out.println("> New Divisions table created.");
         } catch (SQLException ex){}
+    }
+
+    /**
+     * Checks to see if there already are division(s) in the database
+     * @return true if there are divisions, false if not
+     * @throws SQLException
+     */
+    private boolean hasDivision() throws SQLException {
+        String query = "SELECT id FROM APP.divisions";
+        ResultSet result = stmt.executeQuery(query);
+
+        //See if at least the first result can be loaded
+        if(result.next()){
+            return true;
+        }
+        return false;
     }
     
 }
