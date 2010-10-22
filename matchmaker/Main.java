@@ -62,7 +62,8 @@ public class Main {
 
             //Modify Divisions
             if(command.equals("division") || command.equals("d")){
-                //Division.divisionInit(db);
+                Division div = new Division();
+                div.divisionInit(conn);
             }
 
             //Help case --------------------------------------------------------
@@ -70,7 +71,7 @@ public class Main {
                 try {
                     MenuOutput.displayHelp();
                 } catch (Exception ex) {
-                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println("For some reason, the help file could not show");
                 }
             }
 

@@ -22,21 +22,28 @@
 
 package matchmaker;
 
-import java.sql.Connection;
+import java.sql.*;
 
 /**
  * Handles modification of divisions
  * @author Travis Olbrich <travis at tapeandcode.com>
  */
 public class Division {
-    database.Database db;
+    Connection conn;
+    Statement stmt;
 
     /**
      * First called method, checks if divisions already exist
+     * @param c the connection to the database
+     * @throws SQLException
      */
-    public void divisionInit(database.Database d){
-        db = d; //Load the database connection
+    public void divisionInit(Connection c) throws SQLException{
+        //Set us up to use the database
+        conn = c;
+        stmt = conn.createStatement();
+
         //See if there are divisions that already exist
+        createTable();
 
         //if there are no divisions in the database
         System.out.println("No divisions exist. Add new ones? (y/n)");
@@ -52,6 +59,14 @@ public class Division {
     }
 
     private static void display(){
+    }
+
+    private void createTable() {
+        String divTableSql = "CREATE TABLE APP.divisions (ID INT NOT NULL, name varchar(20) NOT NULL)";
+        try{
+            stmt.execute(divTableSql);
+            System.out.println("> New Divisions table created.");
+        } catch (SQLException ex){}
     }
     
 }

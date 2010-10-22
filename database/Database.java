@@ -32,7 +32,7 @@ import java.util.logging.Logger;
  */
 public class Database {
     final String JDBC_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
-    final String DB_URL = "jdbc:derby:bluebuild;create=true";
+    final String DB_URL = "jdbc:derby:matchmaker;create=true";
     final String USER = "dbuser";
     final String PASS = "pwd!";
     
@@ -48,7 +48,8 @@ public class Database {
         try {
             return DriverManager.getConnection(DB_URL, USER, PASS);
         } catch (SQLException ex) {
-            System.out.println("ERROR: Database Connection Failure");
+            System.out.println("> ERROR: Database Connection Failure");
+            System.out.println(ex.getMessage());
             System.exit(0);
         }
         return null;
