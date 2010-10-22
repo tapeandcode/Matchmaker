@@ -61,7 +61,7 @@ public class TextOperations {
             }
 
             //Quit case --------------------------------------------------------
-            if(command.equals("quit") || command.equals("exit") ||command.equals("q")){
+            if(command.equals("quit") || command.equals("exit") ||command.equals("q") || command.equals("e")){
                 System.exit(0);
             }
     }
