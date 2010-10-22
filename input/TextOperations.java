@@ -72,25 +72,38 @@ public class TextOperations {
      * @return command the user's cleaned, tested command
      */
     public static String getCommand(String title) {
+        String command = getRawCommand(title);
+
+        //Process the command
+        command = cleanUserInput(command);
+
+        //Check for basic input
+        catchBasicFunctions(command);
+
+        //if command is help, everything else would be bypassed. We don't
+        //want that.
+        while(command.equals("help") || command.equals("h"))
+            command = TextOperations.getCommand(title);
+
+        return command;
+    }
+
+    /**
+     * Gets the basic uncleaned command from the user
+     * @param title the suffix to put after "matchmaker"
+     * @return command the user's input
+     */
+    public static String getRawCommand(String title) {
+        //Display line prefix
+        System.out.print("matchmaker");
+        if(!title.isEmpty())
+            System.out.print("/"+title);
+
+        System.out.print(">");
+
         //Get the command
-            System.out.print("matchmaker");
-            if(!title.isEmpty())
-                System.out.print("/"+title);
+        String command = sc.nextLine();
 
-            System.out.print(">");
-            String command = sc.nextLine();
-
-            //Process the command
-            command = cleanUserInput(command);
-            
-            //Check for basic input
-            catchBasicFunctions(command);
-
-            //if command is help, everything else would be bypassed. We don't
-            //want that.
-            while(command.equals("help") || command.equals("h"))
-                command = TextOperations.getCommand(title);
-
-            return command;
+        return command;
     }
 }
