@@ -66,6 +66,11 @@ public class TextOperations {
             }
     }
 
+    /**
+     * Get's the user's input from the command line.
+     * @param title the suffix to put after 'matchmaker'
+     * @return command the user's cleaned, tested command
+     */
     public static String getCommand(String title) {
         //Get the command
             System.out.print("matchmaker");
@@ -80,6 +85,11 @@ public class TextOperations {
             
             //Check for basic input
             catchBasicFunctions(command);
+
+            //if command is help, everything else would be bypassed. We don't
+            //want that.
+            while(command.equals("help") || command.equals("h"))
+                command = TextOperations.getCommand(title);
 
             return command;
     }
