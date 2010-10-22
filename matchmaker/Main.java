@@ -66,19 +66,7 @@ public class Main {
                 div.divisionInit(conn);
             }
 
-            //Help case --------------------------------------------------------
-            if(command.equals("help") || command.equals("h")){
-                try {
-                    MenuOutput.displayHelp();
-                } catch (Exception ex) {
-                    System.out.println("For some reason, the help file could not show");
-                }
-            }
-
-            //Quit case --------------------------------------------------------
-            if(command.equals("quit") || command.equals("exit") ||command.equals("q")){
-                quitStatus = true;
-            }
+            catchBasicFunctions(command);
         }
 
     }
@@ -93,6 +81,26 @@ public class Main {
                            "you would like to set the program back up, type: \n" +
                            "setup \n"+
                            "Otherwise, type 'help' or any other command.");
+    }
+
+    /**
+     * Checks for basic common input like help, quit, etc
+     * @param command the cleaned input text
+     */
+    public static void catchBasicFunctions(String command) {
+        //Help case --------------------------------------------------------
+            if(command.equals("help") || command.equals("h")){
+                try {
+                    MenuOutput.displayHelp();
+                } catch (Exception ex) {
+                    System.out.println("For some reason, the help file could not show");
+                }
+            }
+
+            //Quit case --------------------------------------------------------
+            if(command.equals("quit") || command.equals("exit") ||command.equals("q")){
+                System.exit(0);
+            }
     }
 
 }
