@@ -6,3 +6,7 @@ Travis Olbrich
 About Matchmaker
 ----------------
 Matchmaker is a program intended for use in a fundraiser.  People fill out a survey and then Matchmaker creates reports that compare people to each other.
+
+INSTALL
+-------
+To build Matchmaker on your own, you will need to have JavaDB.  JavaDB is not reuqired though to run a complied .jar file.
