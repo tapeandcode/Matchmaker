@@ -22,6 +22,7 @@
 
 package matchmaker;
 
+import input.TextOperations;
 import java.sql.*;
 
 /**
@@ -31,6 +32,7 @@ import java.sql.*;
 public class Division {
     Connection conn;
     Statement stmt;
+    private final String TITLE = "divisions";
 
     /**
      * First called method, checks if divisions already exist
@@ -50,11 +52,14 @@ public class Division {
             System.out.println("> The following divisions exist:");
             System.out.println("> Modify, make new, or exit? (M,N,e)");
 
+            String command = TextOperations.getCommand(TITLE);
         }else{
             System.out.println("> No divisions exist. Add new ones? (y/n)");
+
+            String command = TextOperations.getCommand(TITLE);
         }
 
-        String command = input.TextOperations.getCommand("divisions");
+        
     }
 
     /**

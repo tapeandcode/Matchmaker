@@ -22,12 +22,8 @@
 
 package matchmaker;
 
-import java.util.Scanner;
 import input.TextOperations;
 import java.sql.Connection;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import output.*;
 import database.*;
 
 /**
@@ -58,9 +54,7 @@ public class Main {
             if(command.equals("division") || command.equals("d")){
                 Division div = new Division();
                 div.divisionInit(conn);
-            }
-
-            
+            }            
         }
 
     }
