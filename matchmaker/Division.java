@@ -25,8 +25,6 @@ import database.*;
 import input.TextOperations;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Handles modification of divisions
@@ -106,6 +104,7 @@ public class Division {
      * @param input the user's input
      */
     private void createDivisions(){
+        System.out.println("> Input as follows. ID must be integer. \n id name; id name.");
         String input = TextOperations.getRawCommand(TITLE + "/nameDivisions");
         ArrayList<DivisionModel> divisions = DivisionModel.makeList(input);
         Database.writeDivisions(divisions, stmt, conn);
