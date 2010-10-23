@@ -54,7 +54,9 @@ public class Main {
             if(command.equals("division") || command.equals("d")){
                 Division div = new Division();
                 div.divisionInit(conn);
-            }            
+            }else{
+                System.out.println("Warning> Invalid Input");
+            }          
         }
 
     }
