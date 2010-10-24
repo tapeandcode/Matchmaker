@@ -4,6 +4,7 @@ Matchmaker Help File
 INPUT
 -----
 (d)ivision - Modify the divisions that classify each person
+(i)nput    - Process input from an input file
 
 (h)elp  - Get help for the program, displays this help file
 (q)uit  - Quit the program
@@ -18,3 +19,8 @@ Division
         matchmaker/division> 9 freshman; 10 sopohmore; 11 junior; 12 senior
     When entering divisions, be sure to put the ID of the division before the
     name itself, and separate each division with a ";"
+
+Input File
+    An Input File is a CSV formatted file that is used to import user data in
+    bulk. Fields should be seperated by ',' and text should be enclosed in '"'.
+    Because the first line of the file is skipped, leave the headers in it.
