@@ -97,7 +97,7 @@ public class Database {
     }
 
     /**
-     * Create a table. If the table already exists nothing will happen.
+     * Create a table for divisions. If the table already exists nothing will happen.
      * @param stmt Statement
      * @param conn Database Connection
      */
@@ -105,8 +105,25 @@ public class Database {
         String divTableSql = "CREATE TABLE APP.divisions (ID INT NOT NULL, name varchar(20) NOT NULL)";
         try{
             stmt.execute(divTableSql);
-            System.out.println("> New Divisions table created.");
+            System.out.println("> New divisions table created.");
         } catch (SQLException ex){}
     }
 
+    /**
+     * Creates the table to hold people. If the table already exists nothing will happen.
+     * @param stmt
+     * @param conn
+     */
+    public static void createPersonsTable(Statement stmt, Connection conn) {
+        String divTableSql = "CREATE TABLE APP.persons (ID INT NOT NULL, "+
+                "fname varchar(20) NOT NULL, "+
+                "lname varchar(20) NOT NULL, "+
+                "division int NOT NULL,"+
+                "gender varchar(6) NOT NULL, "+
+                "answers varchar(200) NOT NULL";
+        try{
+            stmt.execute(divTableSql);
+            System.out.println("> New persons table created.");
+        } catch (SQLException ex){}
+    }
 }
