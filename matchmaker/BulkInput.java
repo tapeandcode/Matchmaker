@@ -106,14 +106,19 @@ class BulkInput {
             }
         }
 
+        Scanner fileReader = null;
         try {
             //Read the input from the file
-            Scanner fileReader = new Scanner(userInputFile);
+             fileReader = new Scanner(userInputFile);
         } catch (FileNotFoundException ex) {
             System.out.println("ERROR> The file could not be opened.");
             return false;
         }
 
+        //Load each line into an input file
+        while (fileReader.hasNextLine()){
+            String line = fileReader.nextLine();
+        }
         
         return true;
     }
