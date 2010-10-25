@@ -94,7 +94,7 @@ class BulkInput {
         while (!isFileValid){
             //Prompt the user for the file ID
             System.out.println("> Input the numerical ID of the file you wish to use.\n"+
-                    "> Remember, very very bad things will happen if you use an\n "+
+                    "> Remember, very very bad things will happen if you use an\n"+
                     "> invalid or malformed input file. You could be attacked by\n"+
                     "> a pack of rabid dogs or, even worse, lose all your data.");
             int key = TextOperations.getCleanInt(TITLE);
@@ -121,13 +121,15 @@ class BulkInput {
 
         //Load each line into an insert query and insert
         fileReader.nextLine();
+        int cnt = 0;
         while (fileReader.hasNextLine()){
             String line = fileReader.nextLine();
             String query = "INSERT INTO APP.persons (fname, lname, divID, gender, answers) VALUES("+line+")";
             stmt.execute(query);
+            cnt++;
         }
 
-        System.out.println("All valuses successfully inserted");
+        System.out.println("("+cnt+") values successfully inserted");
         
         return true;
     }
