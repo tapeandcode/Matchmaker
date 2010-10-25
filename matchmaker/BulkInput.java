@@ -26,10 +26,14 @@ import database.Database;
 import input.TextOperations;
 import java.io.File;
 import java.io.FileFilter;
+import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Connection;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Handles the bulk input of data from file
@@ -45,7 +49,7 @@ class BulkInput {
      * Sets us up to input data in bulk
      * @param conn the database connection
      */
-    void init(Connection c) throws SQLException {
+    boolean init(Connection c) throws SQLException {
         //Set us up to use the database
         conn = c;
         stmt = conn.createStatement();
@@ -71,13 +75,46 @@ class BulkInput {
         File[] files = folder.listFiles(filter);
 
         try{
-            //List these files
+            //Print the key and name of each file
+            int x = 0;
             for(File file : files){
-                System.out.println(file.getName());
+                System.out.println(x + "\t" + file.getName());
+                x++;
             }
         }catch (Exception ex){
             System.out.println("ERROR> No .csv files could be found.");
+            return false;
         }
-    }
+        
+        boolean isFileValid = false;
+        
+        //Find the user's file they wish to import
+        File userInputFile = null;
 
+        while (!isFileValid){
+            //Prompt the user for the file ID
+            System.out.println("> Input the numerical ID of the file you wish to use.");
+            int key = TextOperations.getCleanInt(TITLE);
+
+            //Attempt to load the file
+            try{
+                userInputFile = files[key];
+                isFileValid = true;
+            }
+            catch (ArrayIndexOutOfBoundsException ex){
+                System.out.println("ERROR> You must input a valid file key");
+            }
+        }
+
+        try {
+            //Read the input from the file
+            Scanner fileReader = new Scanner(userInputFile);
+        } catch (FileNotFoundException ex) {
+            System.out.println("ERROR> The file could not be opened.");
+            return false;
+        }
+
+        
+        return true;
+    }
 }
