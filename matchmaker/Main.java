@@ -19,7 +19,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Matchmaker.  If not, see <http ://www.gnu.org/licenses/>.
  */
-
 package matchmaker;
 
 import input.TextOperations;
@@ -38,7 +37,7 @@ public class Main {
      * @param args unused
      * @throws Exception
      */
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         //Setup
         boolean quitStatus = false;
         Database db = new Database();
@@ -47,16 +46,25 @@ public class Main {
         //Display intro
         displayIntro();
 
-        while(quitStatus == false) {
+        while (quitStatus == false) {
             String command = TextOperations.getCommand("");
 
             //Modify Divisions
-            if(command.equals("division") || command.equals("d")){
+            if (command.equals("division") || command.equals("d")) {
                 Division div = new Division();
-                div.divisionInit(conn);
-            }else{
+                div.init(conn);
+            }
+
+            //Bulk import of data
+            else if (command.equals("input") || command.equals("i")) {
+                BulkInput bulkIn = new BulkInput();
+                bulkIn.init(conn);
+            }
+
+            //Default error case
+            else {
                 System.out.println("Warning> Invalid Input");
-            }          
+            }
         }
 
     }
@@ -64,15 +72,12 @@ public class Main {
     /**
      * Displays the basic instructions for the user
      */
-    private static void displayIntro(){
-        System.out.println("Welcome to Matchmaker \n" +
-                           "--------------------- \n" +
-                           "If this is your first time running Matchmaker or if \n"+
-                           "you would like to set the program back up, type: \n" +
-                           "setup \n"+
-                           "Otherwise, type 'help' or any other command.");
+    private static void displayIntro() {
+        System.out.println("Welcome to Matchmaker \n"
+                + "--------------------- \n"
+                + "If this is your first time running Matchmaker or if \n"
+                + "you would like to set the program back up, type: \n"
+                + "setup \n"
+                + "Otherwise, type 'help' or any other command.");
     }
-
-    
-
 }
