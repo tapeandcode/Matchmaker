@@ -41,7 +41,7 @@ public class Division {
      * @param c the connection to the database
      * @throws SQLException
      */
-    public void init(Connection c) throws SQLException {
+    public void runDivisionModifier(Connection c) throws SQLException {
         //Set us up to use the database
         conn = c;
         stmt = conn.createStatement();

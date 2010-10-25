@@ -52,13 +52,13 @@ public class Main {
             //Modify Divisions
             if (command.equals("division") || command.equals("d")) {
                 Division div = new Division();
-                div.init(conn);
+                div.runDivisionModifier(conn);
             }
 
             //Bulk import of data
             else if (command.equals("input") || command.equals("i")) {
                 BulkInput bulkIn = new BulkInput();
-                bulkIn.init(conn);
+                bulkIn.runBulkInput(conn);
             }
 
             //Default error case

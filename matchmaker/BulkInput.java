@@ -49,7 +49,7 @@ class BulkInput {
      * Sets us up to input data in bulk
      * @param conn the database connection
      */
-    boolean init(Connection c) throws SQLException {
+    boolean runBulkInput(Connection c) throws SQLException {
         //Set us up to use the database
         conn = c;
         stmt = conn.createStatement();
