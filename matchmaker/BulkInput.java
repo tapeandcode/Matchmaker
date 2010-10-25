@@ -93,7 +93,10 @@ class BulkInput {
 
         while (!isFileValid){
             //Prompt the user for the file ID
-            System.out.println("> Input the numerical ID of the file you wish to use.");
+            System.out.println("> Input the numerical ID of the file you wish to use.\n"+
+                    "> Remember, very very bad things will happen if you use an\n "+
+                    "> invalid or malformed input file. You could be attacked by\n"+
+                    "> a pack of rabid dogs or, even worse, lose all your data.");
             int key = TextOperations.getCleanInt(TITLE);
 
             //Attempt to load the file
