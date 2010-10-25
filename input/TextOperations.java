@@ -106,4 +106,20 @@ public class TextOperations {
 
         return command;
     }
+
+    /**
+     * Returns a clean integer
+     * @param TITLE the suffix to put after "matchmaker"
+     * @return a clean integer. -1 if integer is not valid
+     */
+    public static int getCleanInt(String TITLE) {
+        String clean = getRawCommand(TITLE);
+
+        try{
+            return Integer.valueOf(clean);
+        }
+        catch (NumberFormatException ex){
+            return -1;
+        }
+    }
 }
