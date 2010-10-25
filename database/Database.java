@@ -30,6 +30,7 @@ import java.util.ArrayList;
  * @author Travis Olbrich <travis at tapeandcode.com>
  */
 public class Database {
+
     final String JDBC_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
     final String DB_URL = "jdbc:derby:matchmaker;create=true";
     final String USER = "dbuser";
@@ -100,11 +101,12 @@ public class Database {
      * @param stmt Statement
      * @param conn Database Connection
      */
-    public static void createTable(Statement stmt, Connection conn) {
+    public static void createDivisionsTable(Statement stmt, Connection conn) {
         String divTableSql = "CREATE TABLE APP.divisions (ID INT NOT NULL, name varchar(20) NOT NULL)";
         try{
             stmt.execute(divTableSql);
             System.out.println("> New Divisions table created.");
         } catch (SQLException ex){}
     }
+
 }
