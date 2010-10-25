@@ -115,10 +115,16 @@ class BulkInput {
             return false;
         }
 
-        //Load each line into an input file
+
+        //Load each line into an insert query and insert
+        fileReader.nextLine();
         while (fileReader.hasNextLine()){
             String line = fileReader.nextLine();
+            String query = "INSERT INTO APP.persons (fname, lname, divID, gender, answers) VALUES("+line+")";
+            stmt.execute(query);
         }
+
+        System.out.println("All valuses successfully inserted");
         
         return true;
     }

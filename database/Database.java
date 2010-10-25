@@ -115,15 +115,18 @@ public class Database {
      * @param conn
      */
     public static void createPersonsTable(Statement stmt, Connection conn) {
-        String divTableSql = "CREATE TABLE APP.persons (ID INT NOT NULL, "+
+        String destroy = "DROP TABLE APP.persons";
+        String divTableSql =
+                "CREATE TABLE APP.persons (ID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), "+
                 "fname varchar(20) NOT NULL, "+
                 "lname varchar(20) NOT NULL, "+
-                "division int NOT NULL,"+
+                "divID integer NOT NULL,"+
                 "gender varchar(6) NOT NULL, "+
-                "answers varchar(200) NOT NULL";
+                "answers varchar(200) NOT NULL)";
         try{
+            stmt.execute(destroy);
             stmt.execute(divTableSql);
             System.out.println("> New persons table created.");
-        } catch (SQLException ex){}
+        } catch (SQLException ex){System.out.println(ex.getMessage());}
     }
 }
