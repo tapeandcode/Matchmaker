@@ -35,7 +35,7 @@ public class TextOperations {
     /**
      * Cleans the CLI input from the user.
      * @param input the user's input
-     * @return output the cleaned, formatted string
+     * @return the cleaned, formatted string
      */
     private static String cleanUserInput(String input){
         String output = null;
@@ -48,7 +48,7 @@ public class TextOperations {
 
     /**
      * Checks for basic common input like help, quit, etc
-     * @param command the cleaned input text
+     * @param the cleaned input text
      */
     private static void catchBasicFunctions(String command) {
         //Help case --------------------------------------------------------
@@ -69,7 +69,7 @@ public class TextOperations {
     /**
      * Get's the user's input from the command line.
      * @param title the suffix to put after 'matchmaker'
-     * @return command the user's cleaned, tested command
+     * @return the user's cleaned, tested command
      */
     public static String getCommand(String title) {
         String command = getRawCommand(title);
@@ -91,7 +91,7 @@ public class TextOperations {
     /**
      * Gets the basic uncleaned command from the user
      * @param title the suffix to put after "matchmaker"
-     * @return command the user's input
+     * @return the user's input
      */
     public static String getRawCommand(String title) {
         //Display line prefix
