@@ -124,7 +124,7 @@ public class Database {
                 "gender varchar(6) NOT NULL, "+
                 "answers varchar(200) NOT NULL)";
         try{
-            stmt.execute(destroy);
+            //stmt.execute(destroy);
             stmt.execute(divTableSql);
             System.out.println("> New persons table created.");
         } catch (SQLException ex){System.out.println(ex.getMessage());}

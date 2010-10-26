@@ -43,7 +43,7 @@ public class MenuOutput {
      */
     public static void displayHelp() throws FileNotFoundException, IOException {
         //Load in the file
-        BufferedReader in = new BufferedReader(new FileReader("src/HELP"));
+        BufferedReader in = new BufferedReader(new FileReader("doc/HELP"));
         String readLine = in.readLine();
 
         //Output file to screen
