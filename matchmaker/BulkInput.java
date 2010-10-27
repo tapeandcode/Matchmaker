@@ -25,15 +25,12 @@ package matchmaker;
 import database.Database;
 import input.TextOperations;
 import java.io.File;
-import java.io.FileFilter;
 import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Connection;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Handles the bulk input of data from file

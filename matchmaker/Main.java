@@ -61,6 +61,12 @@ public class Main {
                 bulkIn.runBulkInput(conn);
             }
 
+            //Single import of data
+            else if (command.equals("single") || command.equals("s")) {
+                SingleInput singleIn = new SingleInput();
+                singleIn.runSingleInput(conn);
+            }
+
             //Default error case
             else {
                 System.out.println("Warning> Invalid Input");

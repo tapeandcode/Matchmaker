@@ -5,6 +5,7 @@ INPUT
 -----
 (d)ivision - Modify the divisions that classify each person
 (i)nput    - Process input from an input file
+(s)ingle   - Allows the user to submit a single person
 
 (h)elp  - Get help for the program, displays this help file
 (q)uit  - Quit the program
