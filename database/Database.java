@@ -30,7 +30,6 @@ import java.util.ArrayList;
  * @author Travis Olbrich <travis at tapeandcode.com>
  */
 public class Database {
-
     final String JDBC_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
     final String DB_URL = "jdbc:derby:matchmaker;create=true";
     final String USER = "dbuser";
@@ -50,8 +49,9 @@ public class Database {
         try {
             return DriverManager.getConnection(DB_URL, USER, PASS);
         } catch (SQLException ex) {
-            System.out.println("> ERROR: Database Connection Failure.");
-            System.out.println(ex.getMessage());
+            System.out.println("> ERROR: Database Connection Failure. Ensure no\n"+
+                    "> other copy of Matchmaker is running.");
+            //System.out.println(ex.getMessage());
             System.exit(0);
         }
         return null;
@@ -96,12 +96,31 @@ public class Database {
         return false;
     }
 
+
+    /**
+     * Drops all the database tables
+     * @param conn the connection to the database
+     * @throws SQLException
+     */
+    public static void destroy(Connection conn) throws SQLException {
+        Statement stmt = conn.createStatement();
+        stmt.execute("DROP TABLE APP.divisions");
+        stmt.execute("DROP TABLE APP.persons");
+        System.out.println("> All tables dropped");
+    }
+
+    public static void create(Connection conn) throws SQLException {
+        Statement stmt = conn.createStatement();
+        createDivisionsTable(stmt, conn);
+        createPersonsTable(stmt, conn);
+    }
+
     /**
      * Create a table for divisions. If the table already exists nothing will happen.
      * @param stmt Statement
      * @param conn Database Connection
      */
-    public static void createDivisionsTable(Statement stmt, Connection conn) {
+    private static void createDivisionsTable(Statement stmt, Connection conn) {
         String divTableSql = "CREATE TABLE APP.divisions (ID INT NOT NULL, name varchar(20) NOT NULL)";
         try{
             stmt.execute(divTableSql);
@@ -114,7 +133,7 @@ public class Database {
      * @param stmt
      * @param conn
      */
-    public static void createPersonsTable(Statement stmt, Connection conn) {
+    private static void createPersonsTable(Statement stmt, Connection conn) {
         String destroy = "DROP TABLE APP.persons";
         String divTableSql =
                 "CREATE TABLE APP.persons (ID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), "+
@@ -127,6 +146,6 @@ public class Database {
             //stmt.execute(destroy);
             stmt.execute(divTableSql);
             System.out.println("> New persons table created.");
-        } catch (SQLException ex){System.out.println(ex.getMessage());}
+        } catch (SQLException ex){}
     }
 }

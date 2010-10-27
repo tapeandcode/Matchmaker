@@ -43,9 +43,8 @@ public class Main {
         Database db = new Database();
         Connection conn = db.DBInit();
 
-        //Attempt to install the tables if they do not already exist
-        Database.createDivisionsTable(conn.createStatement(), conn);
-        Database.createPersonsTable(conn.createStatement(), conn);
+        //Attempt creation of connections
+        Database.create(conn);
 
         //Display intro
         displayIntro();
@@ -69,6 +68,15 @@ public class Main {
             else if (command.equals("single") || command.equals("s")) {
                 SingleInput singleIn = new SingleInput();
                 singleIn.runSingleInput(conn);
+            }
+
+            else if (command.equals("clean")) {
+                System.out.println("> Are you sure you want to clean all the\n"+
+                        "> tables? There is no going back. (YES, no)");
+                if(TextOperations.getRawCommand("destroy").equals("YES")){
+                    Database.destroy(conn);
+                    Database.create(conn);
+                }
             }
 
             //Default error case
