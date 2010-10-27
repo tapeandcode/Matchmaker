@@ -24,7 +24,7 @@ package matchmaker;
 import database.*;
 import input.TextOperations;
 import java.sql.*;
-import java.util.ArrayOutput;
+import java.util.ArrayList;
 import output.Output;
 /**
  * Handles modification of divisions
