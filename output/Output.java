@@ -56,7 +56,7 @@ public class Output {
     }
     /**
     * Output method
-    * Takes message only
+    * @param message the message to display
     */
     public static void showOutput (String message)
     {
@@ -64,8 +64,9 @@ public class Output {
     }
     /**
     * Output method
-    * Takes severity as integer (0, no severity; 1 warning; 2 error) and message
-    */
+    * @param severity (0, no severity; 1 warning; 2 error)
+    * @param message the message to display
+     */
     public static void showOutput (int severity, String message)
     {
 	switch (severity)
