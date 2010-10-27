@@ -33,7 +33,7 @@ import java.util.Scanner;
  * Basic output for the Matchmaker menu
  * @author Travis Olbrich <travis at tapeandcode.com>
  */
-public class MenuOutput {
+public class Output {
 
 
     /**
@@ -54,5 +54,34 @@ public class MenuOutput {
 
         in.close();
     }
+    /**
+    * Output method
+    * Takes message only
+    */
+    public static void showOutput (String message)
+    {
+	System.out.println( "> " + message);
+    }
+    /**
+    * Output method
+    * Takes severity as integer (0, no severity; 1 warning; 2 error) and message
+    */
+    public static void showOutput (int severity, String message)
+    {
+	switch (severity)
+	{
+		case 0:
+		System.out.println("> " + message);
+		break;
+		case 1:
+		System.out.println("Warning> " + message);
+		break;
+		case 2:
+		System.out.println("ERROR> " + message);
+		break;
+	}
+    }
+			
+	
 
 }

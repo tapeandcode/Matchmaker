@@ -24,8 +24,8 @@ package matchmaker;
 import database.*;
 import input.TextOperations;
 import java.sql.*;
-import java.util.ArrayList;
-
+import java.util.ArrayOutput;
+import output.Output;
 /**
  * Handles modification of divisions
  * @author Travis Olbrich <travis at tapeandcode.com>
@@ -48,10 +48,10 @@ public class Division {
 
         //Check for the existence of at least one division
         if (Database.hasDivision(stmt)) {
-            System.out.println("> The following divisions exist:");
+            Output.showOutput("The following divisions exist:");
             display();
 
-            System.out.println("> Modify or exit? (M,e)");
+            Output.showOutput("Modify or exit? (M,e)");
             String command = TextOperations.getCommand(TITLE);
 
             //Only continue if the user wants to
@@ -64,7 +64,7 @@ public class Division {
 
 
         } else {
-            System.out.println("> No divisions exist. Add new ones? (y/n)");
+            Output.showOutput("No divisions exist. Add new ones? (y/n)");
 
             String command = TextOperations.getCommand(TITLE);
 
@@ -92,7 +92,7 @@ public class Division {
                 System.out.println("> " + id + "\t " + name);
             }
         } catch (SQLException ex) {
-            System.out.println("ERROR> Database Connection Error.");
+            Output.showOutput(2, "Database Connection Error.");
         }
     }
 
@@ -101,8 +101,8 @@ public class Division {
      * @param input the user's input
      */
     private void createDivisions(){
-        System.out.println(
-                "> Input as follows. ID must be integer. Do not use a trailing ';'"+
+        Output.showOutput(
+                "Input as follows. ID must be integer. Do not use a trailing ';'"+
                 "\n> id name; id name");
         String input = TextOperations.getRawCommand(TITLE + "/nameDivisions");
         ArrayList<DivisionModel> divisions = DivisionModel.makeList(input);

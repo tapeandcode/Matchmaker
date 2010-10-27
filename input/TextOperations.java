@@ -23,7 +23,7 @@
 package input;
 
 import java.util.Scanner;
-import output.MenuOutput;
+import output.Output;
 
 /**
  *
@@ -54,9 +54,9 @@ public class TextOperations {
         //Help case --------------------------------------------------------
             if(command.equals("help") || command.equals("h")){
                 try {
-                    MenuOutput.displayHelp();
+                    Output.displayHelp();
                 } catch (Exception ex) {
-                    System.out.println("For some reason, the help file could not show");
+                    Output.showOutput("For some reason, the help file could not show");
                 }
             }
 
