@@ -26,8 +26,6 @@ import input.TextOperations;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Inputs a single person
@@ -38,6 +36,10 @@ public class SingleInput {
     final String TITLE = "singleInput";
     private Statement stmt;
 
+    /**
+     * Runs a single input
+     * @param c the connection to the database
+     */
     public void runSingleInput(Connection c){
         conn = c;
         String values = "";
