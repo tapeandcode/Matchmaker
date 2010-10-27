@@ -43,6 +43,10 @@ public class Main {
         Database db = new Database();
         Connection conn = db.DBInit();
 
+        //Attempt to install the tables if they do not already exist
+        Database.createDivisionsTable(conn.createStatement(), conn);
+        Database.createPersonsTable(conn.createStatement(), conn);
+
         //Display intro
         displayIntro();
 

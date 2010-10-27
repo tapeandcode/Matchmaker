@@ -46,9 +46,6 @@ public class Division {
         conn = c;
         stmt = conn.createStatement();
 
-        //Create the divisions table if it does not exist
-        Database.createDivisionsTable(stmt, conn);
-
         //Check for the existence of at least one division
         if (Database.hasDivision(stmt)) {
             System.out.println("> The following divisions exist:");

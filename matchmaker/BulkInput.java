@@ -51,9 +51,6 @@ class BulkInput {
         conn = c;
         stmt = conn.createStatement();
 
-        //Create the person table if it does not exist
-        Database.createPersonsTable(stmt, conn);
-
         //Confirm the file is in the correct location
         System.out.println("> Please make sure that the .csv file is in \n"+
                 "> the same directory as this program before continuing.\n"+
