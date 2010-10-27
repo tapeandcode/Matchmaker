@@ -26,7 +26,7 @@ import java.sql.Connection;
 import database.*;
 
 /**
- * Main Matchmaker class, handles top-level operations
+ * Main Matchmaker class, handles top-level operations and routes the flow
  * @author Travis Olbrich <travis at tapeandcode.com>
  */
 public class Main {
