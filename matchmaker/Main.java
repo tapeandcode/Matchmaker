@@ -70,6 +70,12 @@ public class Main {
                 singleIn.runSingleInput(conn);
             }
 
+            else if (command.equals("list") || command.equals("l")) {
+                ListOutput listOut = new ListOutput();
+                listOut.runListOutput(conn);
+            }
+
+            //Clean all of the tables
             else if (command.equals("clean")) {
                 ScreenOutput.showOutput("Are you sure you want to clean all the\n"+
                         "> tables? There is no going back. (YES, no)");

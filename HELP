@@ -6,6 +6,7 @@ INPUT
 (d)ivision - Modify the divisions that classify each person
 (i)nput    - Process input from an input file
 (s)ingle   - Allows the user to submit a single person
+(l)ist     - Prints a list of all persons in a division or in all divisions
 clean      - Removes and sets all tables back up. Requires use of whole word.
 
 (h)elp  - Get help for the program, displays this help file
