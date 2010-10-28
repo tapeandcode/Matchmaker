@@ -26,7 +26,7 @@ import input.TextOperations;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import output.Output;
+import output.ScreenOutput;
 /**
  * Inputs a single person
  * @author Travis Olbrich <travis at tapeandcode.com>
@@ -46,7 +46,7 @@ public class SingleInput {
         String inputPrompts[] = {"fName", "lName", "gender", "answers", "divID"};
 
 
-        Output.showOutput("Enter each requested value, pressing <enter> after\n"+
+        ScreenOutput.showOutput("Enter each requested value, pressing <enter> after\n"+
                 "> each one. For 'gender', use 'male' or 'female'. For divID, use\n"+
                 "> the numerical ID of the division. Use spaces between each answer");
 
@@ -68,9 +68,9 @@ public class SingleInput {
         try {
             stmt = conn.createStatement();
             stmt.execute(query);
-            Output.showOutput("Input is successful");
+            ScreenOutput.showOutput("Input is successful");
         } catch (SQLException ex) {
-            Output.showOutput(1, "Data Input Failure");
+            ScreenOutput.showOutput(1, "Data Input Failure");
         }
     }
 }

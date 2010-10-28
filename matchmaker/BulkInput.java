@@ -31,7 +31,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Connection;
 import java.util.Scanner;
-import output.Output;
+import output.ScreenOutput;
 /**
  * Handles the bulk input of data from file
  * @author Travis Olbrich <travis at tapeandcode.com>
@@ -52,7 +52,7 @@ class BulkInput {
         stmt = conn.createStatement();
 
         //Confirm the file is in the correct location
-        Output.showOutput("Please make sure that the .csv file is in \n"+
+        ScreenOutput.showOutput("Please make sure that the .csv file is in \n"+
                 "> the same directory as this program before continuing.\n"+
                 "> Press <enter> to continue.");
         TextOperations.getCommand(TITLE);
@@ -76,7 +76,7 @@ class BulkInput {
                 x++;
             }
         }catch (Exception ex){
-            Output.showOutput(2, "No .csv files could be found.");
+            ScreenOutput.showOutput(2, "No .csv files could be found.");
             return false;
         }
         
@@ -87,7 +87,7 @@ class BulkInput {
 
         while (!isFileValid){
             //Prompt the user for the file ID
-            Output.showOutput("Input the numerical ID of the file you wish to use.\n"+
+            ScreenOutput.showOutput("Input the numerical ID of the file you wish to use.\n"+
                     "> Remember, very very bad things will happen if you use an\n"+
                     "> invalid or malformed input file. You could be attacked by\n"+
                     "> a pack of rabid dogs or, even worse, lose all your data.");
@@ -99,7 +99,7 @@ class BulkInput {
                 isFileValid = true;
             }
             catch (ArrayIndexOutOfBoundsException ex){
-                Output.showOutput(2, "You must input a valid file key");
+                ScreenOutput.showOutput(2, "You must input a valid file key");
             }
         }
 
@@ -108,7 +108,7 @@ class BulkInput {
             //Read the input from the file
              fileReader = new Scanner(userInputFile);
         } catch (FileNotFoundException ex) {
-            Output.showOutput(2, "The file could not be opened.");
+            ScreenOutput.showOutput(2, "The file could not be opened.");
             return false;
         }
 

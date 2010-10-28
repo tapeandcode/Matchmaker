@@ -24,7 +24,7 @@ package matchmaker;
 import input.TextOperations;
 import java.sql.Connection;
 import database.*;
-import output.Output;
+import output.ScreenOutput;
 /**
  * Main Matchmaker class, handles top-level operations and routes the flow
  * @author Travis Olbrich <travis at tapeandcode.com>
@@ -71,7 +71,7 @@ public class Main {
             }
 
             else if (command.equals("clean")) {
-                Output.showOutput("Are you sure you want to clean all the\n"+
+                ScreenOutput.showOutput("Are you sure you want to clean all the\n"+
                         "> tables? There is no going back. (YES, no)");
                 if(TextOperations.getRawCommand("destroy").equals("YES")){
                     Database.destroy(conn);
@@ -81,7 +81,7 @@ public class Main {
 
             //Default error case
             else {
-                Output.showOutput(1, "Invalid Input");
+                ScreenOutput.showOutput(1, "Invalid Input");
             }
         }
 
@@ -91,7 +91,7 @@ public class Main {
      * Displays the basic instructions for the user
      */
     private static void displayIntro() {
-        Output.showOutput("Welcome to Matchmaker \n"
+        ScreenOutput.showOutput("Welcome to Matchmaker \n"
                 + "--------------------- \n"
                 + "If this is your first time running Matchmaker or if \n"
                 + "you would like to set the program back up, type: \n"

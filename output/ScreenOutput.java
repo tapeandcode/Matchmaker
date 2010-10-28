@@ -33,7 +33,7 @@ import java.util.Scanner;
  * Basic output for the Matchmaker menu
  * @author Travis Olbrich <travis at tapeandcode.com>
  */
-public class Output {
+public class ScreenOutput {
 
 
     /**
@@ -46,7 +46,7 @@ public class Output {
         BufferedReader in = new BufferedReader(new FileReader("doc/HELP"));
         String readLine = in.readLine();
 
-        //Output file to screen
+        //ScreenOutput file to screen
         while(readLine != null){
             System.out.println(readLine);
             readLine = in.readLine();
@@ -55,7 +55,7 @@ public class Output {
         in.close();
     }
     /**
-    * Output method
+    * ScreenOutput method
     * @param message the message to display
     */
     public static void showOutput (String message)
@@ -63,7 +63,7 @@ public class Output {
 	System.out.println( "> " + message);
     }
     /**
-    * Output method
+    * ScreenOutput method
     * @param severity (0, no severity; 1 warning; 2 error)
     * @param message the message to display
      */

@@ -24,7 +24,7 @@ package database;
 
 import java.sql.*;
 import java.util.ArrayList;
-import output.Output;
+import output.ScreenOutput;
 /**
  * Sets up a connection to the database
  * @author Travis Olbrich <travis at tapeandcode.com>
@@ -49,7 +49,7 @@ public class Database {
         try {
             return DriverManager.getConnection(DB_URL, USER, PASS);
         } catch (SQLException ex) {
-            Output.showOutput(2, "Database Connection Failure. Ensure no\n"+
+            ScreenOutput.showOutput(2, "Database Connection Failure. Ensure no\n"+
                     "> other copy of Matchmaker is running.");
             //System.out.println(ex.getMessage());
             System.exit(0);
@@ -74,7 +74,7 @@ public class Database {
                 stmt.execute(insertQuery);
             }
         }catch (SQLException ex){
-            Output.showOutput(2, "Database Connection Issue");
+            ScreenOutput.showOutput(2, "Database Connection Issue");
             System.out.println(ex.getMessage());
         }
     }
@@ -124,7 +124,7 @@ public class Database {
         String divTableSql = "CREATE TABLE APP.divisions (ID INT NOT NULL, name varchar(20) NOT NULL)";
         try{
             stmt.execute(divTableSql);
-            Output.showOutput("New divisions table created.");
+            ScreenOutput.showOutput("New divisions table created.");
         } catch (SQLException ex){}
     }
 
@@ -145,7 +145,7 @@ public class Database {
         try{
             //stmt.execute(destroy);
             stmt.execute(divTableSql);
-            Output.showOutput("New persons table created.");
+            ScreenOutput.showOutput("New persons table created.");
         } catch (SQLException ex){}
     }
 }
