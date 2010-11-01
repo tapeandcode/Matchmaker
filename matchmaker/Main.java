@@ -21,7 +21,7 @@
  */
 package matchmaker;
 
-import input.TextOperations;
+import input.TextReader;
 import java.sql.Connection;
 import database.*;
 import output.ScreenOutput;
@@ -50,7 +50,7 @@ public class Main {
         displayIntro();
 
         while (quitStatus == false) {
-            String command = TextOperations.getCommand("");
+            String command = TextReader.getCommand("");
 
             //Modify Divisions
             if (command.equals("division") || command.equals("d")) {
@@ -70,16 +70,23 @@ public class Main {
                 singleIn.runSingleInput(conn);
             }
 
+            //List persons
             else if (command.equals("list") || command.equals("l")) {
                 ListOutput listOut = new ListOutput();
                 listOut.runListOutput(conn);
+            }
+
+            //Info for a single person
+            else if (command.equals("person") || command.equals("p")) {
+                PersonInformation personInfo = new PersonInformation();
+                personInfo.runPersonInformation(conn);
             }
 
             //Clean all of the tables
             else if (command.equals("clean")) {
                 ScreenOutput.showOutput("Are you sure you want to clean all the\n"+
                         "> tables? There is no going back. (YES, no)");
-                if(TextOperations.getRawCommand("destroy").equals("YES")){
+                if(TextReader.getRawCommand("destroy").equals("YES")){
                     Database.destroy(conn);
                     Database.create(conn);
                 }

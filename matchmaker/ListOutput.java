@@ -22,7 +22,7 @@
 
 package matchmaker;
 
-import input.TextOperations;
+import input.TextReader;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -43,7 +43,7 @@ class ListOutput {
     boolean runListOutput(Connection conn) {
         ScreenOutput.showOutput("Enter division ID or -1 for all.");
 
-        int choice = TextOperations.getCleanInt(TITLE);
+        int choice = TextReader.getCleanInt(TITLE);
 
         //Set up the query
         String query = null;

@@ -22,7 +22,7 @@
 package matchmaker;
 
 import database.*;
-import input.TextOperations;
+import input.TextReader;
 import java.sql.*;
 import java.util.ArrayList;
 import output.ScreenOutput;
@@ -52,7 +52,7 @@ public class Division {
             display();
 
             ScreenOutput.showOutput("Modify or exit? (M,e)");
-            String command = TextOperations.getCommand(TITLE);
+            String command = TextReader.getCommand(TITLE);
 
             //Only continue if the user wants to
             if (command.equals("m")) {
@@ -66,7 +66,7 @@ public class Division {
         } else {
             ScreenOutput.showOutput("No divisions exist. Add new ones? (y/n)");
 
-            String command = TextOperations.getCommand(TITLE);
+            String command = TextReader.getCommand(TITLE);
 
             if (command.equals("y")) {                
                 createDivisions();
@@ -104,7 +104,7 @@ public class Division {
         ScreenOutput.showOutput(
                 "Input as follows. ID must be integer. Do not use a trailing ';'"+
                 "\n> id name; id name");
-        String input = TextOperations.getRawCommand(TITLE + "/nameDivisions");
+        String input = TextReader.getRawCommand(TITLE + "/nameDivisions");
         ArrayList<DivisionModel> divisions = DivisionModel.makeList(input);
         Database.writeDivisions(divisions, stmt, conn);
         display();

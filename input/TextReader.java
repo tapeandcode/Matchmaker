@@ -1,6 +1,6 @@
 /*
 
- * TextOperations.java
+ * TextReader.java
  * 
  * Copyright (c) 2010 Travis Olbrich.
  * 
@@ -29,7 +29,7 @@ import output.ScreenOutput;
  *
  * @author Travis Olbrich <travis at tapeandcode.com>
  */
-public class TextOperations {
+public class TextReader {
     static Scanner sc = new Scanner(System.in);
 
     /**
@@ -83,7 +83,7 @@ public class TextOperations {
         //if command is help, everything else would be bypassed. We don't
         //want that.
         while(command.equals("help") || command.equals("h"))
-            command = TextOperations.getCommand(title);
+            command = TextReader.getCommand(title);
 
         return command;
     }
