@@ -41,7 +41,7 @@ public class PersonModel {
      * @param g gender
      * @param a answers
      */
-    void PersonModel(String f, String l, int d, String g, String a){
+    PersonModel(String f, String l, int d, String g, String a){
         fname = f;
         lname = l;
         divID = d;
@@ -49,16 +49,16 @@ public class PersonModel {
         answers = a;
     }
 
-    /**
-     * Takes the raw text from the bulk file and makes it into a model
-     * @param inputLine the raw input from the bulk input file
-     * @return the person's model
-     */
-    public static PersonModel makePersonModel(String inputLine){
-        PersonModel person = new PersonModel();
-
-        
-
-        return person;
+    PersonModel(PersonModel person){
+        fname = person.fname;
+        lname = person.lname;
+        divID = person.divID;
+        gender = person.gender;
+        answers = person.answers;
     }
+
+    public static String getSummary(PersonModel person){
+        return person.fname + " " + person.lname + " in division " + person.divID;
+    }
+
 }

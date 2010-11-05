@@ -113,7 +113,7 @@ public class TextReader {
      * @return a clean integer. -1 if integer is not valid
      */
     public static int getCleanInt(String TITLE) {
-        String clean = getRawCommand(TITLE);
+        String clean = getCommand(TITLE);
 
         try{
             return Integer.valueOf(clean);
@@ -121,5 +121,25 @@ public class TextReader {
         catch (NumberFormatException ex){
             return -1;
         }
+    }
+
+    /**
+     * Gets an integer within a certain bounds
+     * @param size the max possible value
+     * @param TITLE the title to display
+     * @return vaid ID number, -1 if there is problem
+     */
+    public static int getValidID(int size, String TITLE) {
+        int id;
+        ScreenOutput.showOutput("Please enter the numerical ID of the item you wish to select.");
+        id = getCleanInt(TITLE);
+
+        if(id>=0 && id <= size)
+            return id;
+        else
+            getValidID(size, TITLE);
+
+
+        return -1;
     }
 }

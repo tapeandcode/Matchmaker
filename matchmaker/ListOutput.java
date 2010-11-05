@@ -79,6 +79,7 @@ class ListOutput {
                 fw.write(lname+fname+gender+divid+","+id+"\n");
             }
             fw.close();
+            ScreenOutput.showOutput("File writing success");
         } catch (Exception ex) {
             ScreenOutput.showOutput(3, "File writing failure");
         }

@@ -30,6 +30,7 @@ import output.ScreenOutput;
  * @author Travis Olbrich <travis at tapeandcode.com>
  */
 public class Database {
+
     final String JDBC_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
     final String DB_URL = "jdbc:derby:matchmaker;create=true";
     final String USER = "dbuser";
@@ -51,7 +52,7 @@ public class Database {
         } catch (SQLException ex) {
             ScreenOutput.showOutput(2, "Database Connection Failure. Ensure no\n"+
                     "> other copy of Matchmaker is running.");
-            //System.out.println(ex.getMessage());
+            System.out.println(ex.getMessage());
             System.exit(0);
         }
         return null;
@@ -68,6 +69,7 @@ public class Database {
             String deleteQuery = "DELETE FROM APP.divisions";
             stmt.execute(deleteQuery);
 
+            //Write information for each person
             for(DivisionModel model : divisions){
                 String insertQuery = "INSERT INTO APP.divisions \n";
                 insertQuery+="VALUES("+model.getID()+", '"+model.getName()+"')";
@@ -107,6 +109,30 @@ public class Database {
         stmt.execute("DROP TABLE APP.divisions");
         stmt.execute("DROP TABLE APP.persons");
         System.out.println("> All tables dropped");
+    }
+
+
+    /**
+     * Searches the database for people with the same last name as lname
+     * @param stmt The statement for the database connection
+     * @param lname Last name of person to find
+     * @return an ArrayList of PersonModel with each result
+     * @throws SQLException 
+     */
+    public static ArrayList<PersonModel> findPersons(Statement stmt, String lname) throws SQLException {
+        ArrayList<PersonModel> people = new ArrayList<PersonModel>();
+        String query = "SELECT * FROM APP.persons WHERE lower(lname) = '"+lname+"'";
+        ResultSet rs = stmt.executeQuery(query);
+
+        //Add each person to the list
+        while(rs.next()){
+            PersonModel person = new PersonModel(rs.getString("fname"), rs.getString("lname"),
+                    rs.getInt("divID"), rs.getString("gender"), rs.getString("answers"));
+            //System.out.println(PersonModel.getSummary(person));
+            people.add(person);
+        }
+
+        return people;
     }
 
     public static void create(Connection conn) throws SQLException {
