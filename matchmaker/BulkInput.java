@@ -23,7 +23,7 @@
 package matchmaker;
 
 import database.Database;
-import input.TextReader;
+import input.CLIinput;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
@@ -55,7 +55,7 @@ class BulkInput {
         ScreenOutput.showOutput("Please make sure that the .csv file is in \n"+
                 "> the same directory as this program before continuing.\n"+
                 "> Press <enter> to continue.");
-        TextReader.getCommand(TITLE);
+        CLIinput.getCommand(TITLE);
         
         //Prepare file filter
         FilenameFilter filter = new FilenameFilter() {
@@ -91,7 +91,7 @@ class BulkInput {
                     "> Remember, very very bad things will happen if you use an\n"+
                     "> invalid or malformed input file. You could be attacked by\n"+
                     "> a pack of rabid dogs or, even worse, lose all your data.");
-            int key = TextReader.getCleanInt(TITLE);
+            int key = CLIinput.getCleanInt(TITLE);
 
             //Attempt to load the file
             try{

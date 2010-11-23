@@ -1,6 +1,6 @@
 /*
 
- * PersonModel.java
+ * Person.java
  * 
  * Copyright (c) 2010 Travis Olbrich.
  * 
@@ -26,22 +26,23 @@ package database;
  * The model for a person to be used while processing persons
  * @author Travis Olbrich <travis at tapeandcode.com>
  */
-public class PersonModel {
-    private String fname;
-    private String lname;
-    private int    divID;
-    private String gender;
-    private String answers;
+public class Person {
+
+    public String fname;
+    public String lname;
+    public int    divID;
+    public String gender;
+    public String answers;
 
     /**
-     * Makes data about a person into a PersonModel
+     * Makes data about a person into a Person
      * @param f first name
      * @param l last name
      * @param d division ID
      * @param g gender
      * @param a answers
      */
-    PersonModel(String f, String l, int d, String g, String a){
+    Person(String f, String l, int d, String g, String a){
         fname = f;
         lname = l;
         divID = d;
@@ -49,7 +50,7 @@ public class PersonModel {
         answers = a;
     }
 
-    PersonModel(PersonModel person){
+    Person(Person person){
         fname = person.fname;
         lname = person.lname;
         divID = person.divID;
@@ -57,8 +58,26 @@ public class PersonModel {
         answers = person.answers;
     }
 
-    public static String getSummary(PersonModel person){
+    /**
+     * Prints a summary of the person
+     * @param person
+     * @return the summary of the person
+     */
+    public static String getSummary(Person person){
         return person.fname + " " + person.lname + " in division " + person.divID;
     }
+
+
+    /**
+     * Gets the opposite gender
+     * @param gender
+     * @return the opposite gender
+     */
+    public static String getOppositeGender(String gender) {
+        if(gender.equalsIgnoreCase("male"))
+            return "female";
+        return "male";
+    }
+
 
 }

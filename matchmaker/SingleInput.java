@@ -22,7 +22,7 @@
 
 package matchmaker;
 
-import input.TextReader;
+import input.CLIinput;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -54,11 +54,11 @@ public class SingleInput {
         for(int i = 0; i < inputPrompts.length; i++){
             if(!inputPrompts[i].equals("divID")){
                 //Everything not divID is string
-                values += "'" + TextReader.getRawCommand(TITLE+"/"+
+                values += "'" + CLIinput.getRawCommand(TITLE+"/"+
                         inputPrompts[i]).trim() + "',";
             }else{
                 //divID is int
-                values += TextReader.getCleanInt(TITLE+"/"+inputPrompts[i]);
+                values += CLIinput.getCleanInt(TITLE+"/"+inputPrompts[i]);
             }
         }
 

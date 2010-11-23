@@ -22,17 +22,13 @@
 
 package matchmaker;
 
+import compare.Comparisons;
 import database.Database;
-import database.PersonModel;
-import input.TextReader;
+import database.Person;
+import input.CLIinput;
 import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import output.ScreenOutput;
-import sun.awt.X11.Screen;
 
 /**
  *
@@ -49,8 +45,8 @@ class PersonInformation {
      */
     boolean runPersonInformation(Connection conn) {
         ScreenOutput.showOutput("Enter some or all of the last name only.");
-        String lname = TextReader.getCommand(TITLE);
-        ArrayList<PersonModel> people = null;
+        String lname = CLIinput.getCommand(TITLE);
+        ArrayList<Person> people = null;
 
         //Search for people fitting the description
         try {
@@ -64,19 +60,24 @@ class PersonInformation {
             return false;
         }
 
-        PersonModel person = null;
+        Person person = null;
         
         //List all the people
         for(int i = 0; i < people.size(); i++){
             person = people.get(i);
-            ScreenOutput.showOutput("["+i+"] "+PersonModel.getSummary(person));
+            ScreenOutput.showOutput("["+i+"] "+Person.getSummary(person));
         }
 
         //Have the person select their choice
-        int id = TextReader.getValidID(people.size(), TITLE);
+        int id = CLIinput.getValidID(people.size(), TITLE);
         person = people.get(id);
 
-        System.out.println(PersonModel.getSummary(person));
+        //Check for comparison choice
+        //String comparisonChoice = Comparisons.getChoice(TITLE);
+        String  comparisonChoice="normal";
+
+        //Display the person's results
+        Comparisons.writeResults(person, comparisonChoice);
 
         return true;
     }

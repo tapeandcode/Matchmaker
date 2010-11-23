@@ -116,19 +116,42 @@ public class Database {
      * Searches the database for people with the same last name as lname
      * @param stmt The statement for the database connection
      * @param lname Last name of person to find
-     * @return an ArrayList of PersonModel with each result
+     * @return an ArrayList of Person with each result
      * @throws SQLException 
      */
-    public static ArrayList<PersonModel> findPersons(Statement stmt, String lname) throws SQLException {
-        ArrayList<PersonModel> people = new ArrayList<PersonModel>();
+    public static ArrayList<Person> findPersons(Statement stmt, String lname) throws SQLException {
         String query = "SELECT * FROM APP.persons WHERE lower(lname) = '"+lname+"'";
+        return getResults(query, stmt);
+    }
+
+    /**
+     * Retrieves a list of all the persons that are of opposite gender
+     * @param stmt
+     * @param gender
+     * @return
+     * @throws SQLException
+     */
+    public static ArrayList<Person> findOpposites(Statement stmt, String gender) throws SQLException{
+        String query = "SELECT * FROM APP.persons WHERE gender = '"+gender+"'";
+        return getResults(query, stmt);
+    }
+
+    /**
+     * Gets the results from a query
+     * @param query
+     * @param stmt
+     * @return a list of people
+     * @throws SQLException
+     */
+    private static ArrayList<Person> getResults(String query, Statement stmt) throws SQLException{
+        ArrayList<Person> people = new ArrayList<Person>();
         ResultSet rs = stmt.executeQuery(query);
 
         //Add each person to the list
         while(rs.next()){
-            PersonModel person = new PersonModel(rs.getString("fname"), rs.getString("lname"),
+            Person person = new Person(rs.getString("fname"), rs.getString("lname"),
                     rs.getInt("divID"), rs.getString("gender"), rs.getString("answers"));
-            //System.out.println(PersonModel.getSummary(person));
+            //System.out.println(Person.getSummary(person));
             people.add(person);
         }
 

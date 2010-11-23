@@ -22,15 +22,12 @@
 
 package matchmaker;
 
-import input.TextReader;
+import input.CLIinput;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import output.ScreenOutput;
 
 /**
@@ -43,7 +40,7 @@ class ListOutput {
     boolean runListOutput(Connection conn) {
         ScreenOutput.showOutput("Enter division ID or -1 for all.");
 
-        int choice = TextReader.getCleanInt(TITLE);
+        int choice = CLIinput.getCleanInt(TITLE);
 
         //Set up the query
         String query = null;
@@ -65,7 +62,7 @@ class ListOutput {
         //Open the file for writing
         FileWriter fw = null;
         try {
-            fw = new FileWriter(new File("List Output " + System.console() + ".txt"));
+            fw = new FileWriter(new File("List Output " + System.getProperties() + ".txt"));
 
             //Print each line
             fw.write("'lastName','firstName','gender','DivisionID','ID'\n");

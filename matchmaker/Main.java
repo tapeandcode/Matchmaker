@@ -21,7 +21,7 @@
  */
 package matchmaker;
 
-import input.TextReader;
+import input.CLIinput;
 import java.sql.Connection;
 import database.*;
 import output.ScreenOutput;
@@ -50,7 +50,7 @@ public class Main {
         displayIntro();
 
         while (quitStatus == false) {
-            String command = TextReader.getCommand("");
+            String command = CLIinput.getCommand("");
 
             //Modify Divisions
             if (command.equals("division") || command.equals("d")) {
@@ -86,7 +86,7 @@ public class Main {
             else if (command.equals("clean")) {
                 ScreenOutput.showOutput("Are you sure you want to clean all the\n"+
                         "> tables? There is no going back. (YES, no)");
-                if(TextReader.getRawCommand("destroy").equals("YES")){
+                if(CLIinput.getRawCommand("destroy").equals("YES")){
                     Database.destroy(conn);
                     Database.create(conn);
                 }
