@@ -31,7 +31,7 @@ import java.sql.SQLException;
 import output.ScreenOutput;
 
 /**
- *
+ * Output a list of divisions
  * @author Travis Olbrich <travis at tapeandcode.com>
  */
 class ListOutput {
@@ -58,11 +58,13 @@ class ListOutput {
             ScreenOutput.showOutput(2, "Database Query Failure");
             return false;
         }
-
+        
         //Open the file for writing
         FileWriter fw = null;
         try {
-            fw = new FileWriter(new File("List Output " + System.getProperties() + ".txt"));
+            ScreenOutput.showOutput(0, "Begin writing.");
+            File file = new File("List Output.txt");
+            fw = new FileWriter(file);
 
             //Print each line
             fw.write("'lastName','firstName','gender','DivisionID','ID'\n");
@@ -76,11 +78,13 @@ class ListOutput {
                 fw.write(lname+fname+gender+divid+","+id+"\n");
             }
             fw.close();
-            ScreenOutput.showOutput("File writing success");
+            ScreenOutput.showOutput(0, "File writing success");
         } catch (Exception ex) {
-            ScreenOutput.showOutput(3, "File writing failure");
+            ScreenOutput.showOutput(2, "File writing failure.");
+            ScreenOutput.showOutput(2, ex.getMessage());
         }
 
+        
         return true;
     }
 

@@ -57,6 +57,14 @@ public class Database {
         }
         return null;
     }
+    /**
+     * Check to see if a table exists
+     * @param tableName the table to check against
+     * @return true if table exists
+     */
+    public static boolean checkForTable(String tableName) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
 
     /**
      * Writes the divisions to the database

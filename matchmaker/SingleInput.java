@@ -47,7 +47,7 @@ public class SingleInput {
 
 
         ScreenOutput.showOutput("Enter each requested value, pressing <enter> after\n"+
-                "> each one. For 'gender', use 'male' or 'female'. For divID, use\n"+
+                "> each one. For 'gender', use 'm' or 'f'. For divID, use\n"+
                 "> the numerical ID of the division. Use spaces between each answer");
 
         //Get each value and add it in
